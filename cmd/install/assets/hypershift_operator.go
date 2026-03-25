@@ -990,9 +990,6 @@ func (o HyperShiftOperatorService) Build() *corev1.Service {
 			Labels: map[string]string{
 				"name": HypershiftOperatorName,
 			},
-			Annotations: map[string]string{
-				"service.beta.openshift.io/serving-cert-secret-name": "manager-serving-cert",
-			},
 		},
 		Spec: corev1.ServiceSpec{
 			Type: corev1.ServiceTypeClusterIP,
@@ -2020,9 +2017,6 @@ func (o HyperShiftMutatingWebhookConfiguration) Build() *admissionregistrationv1
 		ObjectMeta: metav1.ObjectMeta{
 			Namespace: o.Namespace.Name,
 			Name:      hyperv1.GroupVersion.Group,
-			Annotations: map[string]string{
-				"service.beta.openshift.io/inject-cabundle": "true",
-			},
 		},
 		Webhooks: []admissionregistrationv1.MutatingWebhook{
 			{
@@ -2173,9 +2167,6 @@ func (o HyperShiftValidatingWebhookConfiguration) Build() *admissionregistration
 		ObjectMeta: metav1.ObjectMeta{
 			Namespace: o.Namespace,
 			Name:      hyperv1.GroupVersion.Group,
-			Annotations: map[string]string{
-				"service.beta.openshift.io/inject-cabundle": "true",
-			},
 		},
 		Webhooks: []admissionregistrationv1.ValidatingWebhook{
 			{
