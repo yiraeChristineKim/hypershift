@@ -24,6 +24,7 @@ import (
 	cliversion "github.com/openshift/hypershift/cmd/version"
 	"github.com/openshift/hypershift/product-cli/cmd/create"
 	"github.com/openshift/hypershift/product-cli/cmd/destroy"
+	"github.com/openshift/hypershift/product-cli/cmd/fromhub"
 
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
@@ -62,6 +63,7 @@ func main() {
 	cmd.AddCommand(create.NewCommand())
 	cmd.AddCommand(destroy.NewCommand())
 	cmd.AddCommand(cliversion.NewVersionCommand())
+	cmd.AddCommand(fromhub.NewCommand())
 
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT)
