@@ -15,7 +15,6 @@ import (
 	"github.com/openshift/hypershift/cmd/cluster/core"
 	hcpkubevirt "github.com/openshift/hypershift/cmd/cluster/kubevirt"
 	hcpopenstack "github.com/openshift/hypershift/cmd/cluster/openstack"
-	"github.com/openshift/hypershift/support/config"
 	"github.com/spf13/cobra"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -62,7 +61,6 @@ func newCreateCommand(hubOpts *Options) *cobra.Command {
 }
 
 func newCreateAWSCommand(hubOpts *Options, coreOpts *core.RawCreateOptions) *cobra.Command {
-	coreOpts.ReleaseStream = config.DefaultReleaseStream
 	awsOpts := hypershiftaws.DefaultOptions()
 
 	cmd := &cobra.Command{
@@ -78,7 +76,6 @@ func newCreateAWSCommand(hubOpts *Options, coreOpts *core.RawCreateOptions) *cob
 }
 
 func newCreateAzureCommand(hubOpts *Options, coreOpts *core.RawCreateOptions) *cobra.Command {
-	coreOpts.ReleaseStream = config.DefaultReleaseStream
 	azureOpts := hypershiftazure.DefaultOptions()
 
 	cmd := &cobra.Command{

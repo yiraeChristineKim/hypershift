@@ -5,7 +5,6 @@ import (
 
 	hypershiftaws "github.com/openshift/hypershift/cmd/cluster/aws"
 	"github.com/openshift/hypershift/cmd/cluster/core"
-	"github.com/openshift/hypershift/support/config"
 
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
@@ -19,8 +18,6 @@ func NewCreateCommand(opts *core.RawCreateOptions, clientProviders ...*core.Clie
 		Short:        "Creates basic functional HostedCluster resources on AWS",
 		SilenceUsage: true,
 	}
-
-	opts.ReleaseStream = config.DefaultReleaseStream
 
 	awsOpts := hypershiftaws.DefaultOptions()
 
