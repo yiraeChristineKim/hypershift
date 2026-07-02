@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"strings"
@@ -253,9 +254,8 @@ func postToProxy(cmd *cobra.Command, opts *Options, req CreateRequest) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusCreated && resp.StatusCode != http.StatusOK {
-		var errBody map[string]interface{}
-		_ = json.NewDecoder(resp.Body).Decode(&errBody)
-		return fmt.Errorf("proxy returned %d: %v", resp.StatusCode, errBody)
+		raw, _ := io.ReadAll(resp.Body)
+		return fmt.Errorf("proxy returned %d: %s", resp.StatusCode, strings.TrimSpace(string(raw)))
 	}
 
 	fmt.Fprintf(cmd.OutOrStdout(), "HostedCluster %q created on %s\n", req.HostedCluster.Name, opts.HostingCluster)
