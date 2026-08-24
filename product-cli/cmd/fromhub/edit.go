@@ -12,9 +12,12 @@ import (
 	"strings"
 
 	hypershiftv1beta1 "github.com/openshift/hypershift/api/hypershift/v1beta1"
-	"github.com/spf13/cobra"
+
 	"k8s.io/apimachinery/pkg/util/strategicpatch"
+
 	"sigs.k8s.io/yaml"
+
+	"github.com/spf13/cobra"
 )
 
 func newEditCommand(opts *Options) *cobra.Command {
@@ -63,7 +66,7 @@ func runEdit(cmd *cobra.Command, opts *Options, name string) error {
 		return fmt.Errorf("marshal original: %w", err)
 	}
 
-	// --- 2. Serialise to YAML with an explanatory header ---
+	// --- 2. Serialize to YAML with an explanatory header ---
 	resourceYAML, err := yaml.Marshal(hc)
 	if err != nil {
 		return fmt.Errorf("marshal to YAML: %w", err)
@@ -92,7 +95,7 @@ func runEdit(cmd *cobra.Command, opts *Options, name string) error {
 			return err
 		}
 		if !changed {
-			fmt.Fprintln(cmd.OutOrStdout(), "Edit cancelled, no changes made.")
+			fmt.Fprintln(cmd.OutOrStdout(), "Edit canceled, no changes made.")
 			return nil
 		}
 

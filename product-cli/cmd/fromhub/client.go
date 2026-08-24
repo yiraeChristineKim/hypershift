@@ -86,7 +86,7 @@ func (t *impersonatingTransport) RoundTrip(req *http.Request) (*http.Response, e
 	return t.wrapped.RoundTrip(req)
 }
 
-// loadConfig loads the REST config honouring --hub-kubeconfig and --context.
+// loadConfig loads the REST config honoring --hub-kubeconfig and --context.
 func loadConfig(opts *Options) (*rest.Config, error) {
 	loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
 	if opts.Kubeconfig != "" {

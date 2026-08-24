@@ -9,15 +9,18 @@ import (
 	"strings"
 
 	hypershiftv1beta1 "github.com/openshift/hypershift/api/hypershift/v1beta1"
-	awsinfra "github.com/openshift/hypershift/cmd/infra/aws"
 	"github.com/openshift/hypershift/cmd/cluster/core"
+	awsinfra "github.com/openshift/hypershift/cmd/infra/aws"
 	"github.com/openshift/hypershift/cmd/log"
 	"github.com/openshift/hypershift/cmd/util"
-	"github.com/spf13/cobra"
+
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/types"
 	utilerrors "k8s.io/apimachinery/pkg/util/errors"
+
 	"sigs.k8s.io/controller-runtime/pkg/client"
+
+	"github.com/spf13/cobra"
 )
 
 func newDeleteCommand(opts *Options) *cobra.Command {
